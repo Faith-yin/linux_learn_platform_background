@@ -1,3 +1,8 @@
+/*
+ * @Author: 殷鹏飞
+ * @Date: 2020-03-13 13:08:28
+ * @Description: 
+ */
 'use strict'
 // Template version: 1.3.1
 // see http://vuejs-templates.github.io/webpack for documentation.
@@ -10,7 +15,21 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+
+
+      // 跨域配置项
+      '/api': {
+        // target: 'http://192.168.2.3:8888', //接口域名
+        target: 'http://localhost:8888', //接口域名
+        changeOrigin: true, //是否跨域
+        pathRewrite: {
+          '^/api': '', //将 '/api' 替换为空
+        }
+      }
+
+
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

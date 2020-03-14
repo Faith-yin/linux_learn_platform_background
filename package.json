@@ -1,7 +1,7 @@
 {
-  "name": "vue-element-template",
+  "name": "linux_learn_platform_background",
   "version": "1.0.0",
-  "description": "vue/element脚手架模板",
+  "description": "linux 管理学习平台 后台部分",
   "author": "yinpengfei <1207828715@qq.com>",
   "private": true,
   "scripts": {

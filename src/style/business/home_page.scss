@@ -3,3 +3,64 @@
  * @Date: 2019-12-27 16:18:55
  * @information: 主页面
  */
+#home-page {
+
+  // 标题栏部分
+  .el-header {
+    height: 60px;
+    background-color: #000 !important;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 60px;
+    .el-row {
+      color: #fff;
+      .one {
+        margin-left: 50%;
+      }
+      .three {
+        &:hover {
+          cursor: pointer;
+          color: rgb(231, 228, 228);
+        }
+      }
+    }
+  }
+
+  .el-container .is-vertical {
+    overflow: hidden;
+  }
+
+  .el-header, .el-footer {
+    background-color: #B3C0D1;
+    color: #333;
+    text-align: center;
+    line-height: 60px;
+  }
+  
+  .el-aside {
+    background-color: #D3DCE6;
+    color: #333;
+    text-align: center;
+    line-height: 200px;
+  }
+  
+  .el-main {
+    padding: 10px;
+    background-color: #F7F7F7;
+    color: #333;
+    text-align: center;
+  }
+
+  .el-footer {
+    .el-pagination {
+      display: flex;
+      justify-content: flex-end;
+      padding-top: 15px;
+      box-sizing: border-box;
+    }
+  }
+
+
+
+}

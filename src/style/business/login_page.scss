@@ -1,0 +1,43 @@
+#login-page {
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+    background: url('~@/assets/image/bgimg.jpg') no-repeat 0 0;
+    background-size: cover;
+
+    .login-container {
+        // 表单
+        .login-box {
+          width: 500px;
+          margin: 150px auto;
+          padding: 70px 70px 55px;
+          opacity: 0.8;
+          background-color: #fff;
+          border: 1px solid #DCDFE6;
+          border-radius: 5px;
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          box-shadow: 0 0 20px #9ca1aa;
+      }
+      // 标题区域
+      .login-title-box {
+          // 标题
+          .login-title {
+              text-align: center;
+              margin: 0 auto 40px 70px;
+              font-size: 28px;
+              color: #303133;
+          }
+          // 登录注册提示信息
+          .login-info {
+              padding-bottom: 20px;
+          }
+      }
+      // 按钮盒子
+      .btn-box {
+          text-align: center;
+      }
+    }
+
+  
+}

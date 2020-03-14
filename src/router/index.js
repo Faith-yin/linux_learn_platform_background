@@ -12,7 +12,12 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/', //主页面
+      path: '/', //登录页面
+      name: 'Login',
+      component: () => import('@/views/Login')
+    },
+    {
+      path: '/HomePage', //主页面
       name: 'HomePage',
       component: () => import('@/views/HomePage')
     }
