@@ -10,7 +10,7 @@
       <el-header>
         <el-row type="flex">
           <el-col :span="16"><div class="one grid-content bg-purple">Linux 学习平台后台管理系统</div></el-col>
-          <el-col :span="4"><div class="two grid-content bg-purple-light">当前登陆者：Admin</div></el-col>
+          <el-col :span="4"><div class="two grid-content bg-purple-light">当前登陆者：{{adminInfo.username || '未知管理员'}}</div></el-col>
           <el-col :span="3"><div class="three grid-content bg-purple" @click="logout">退出登录</div></el-col>
         </el-row>
       </el-header>
@@ -24,15 +24,28 @@
         <el-container>
           <!-- 右侧：上方 主要信息展示区 -->
           <el-main>
-            <list-information v-if="selectedTab==1"></list-information>
-            <list-article v-if="selectedTab==2"></list-article>
-            <list-video v-if="selectedTab==3"></list-video>
-            <list-issues v-if="selectedTab==4"></list-issues>
-            <list-issues-comment v-if="selectedTab==5"></list-issues-comment>
-            <list-outsidelink v-if="selectedTab==6"></list-outsidelink>
-            <list-user v-if="selectedTab==7"></list-user>
-            <list-statistics v-if="selectedTab==8"></list-statistics>
-            <list-admin v-if="selectedTab==9"></list-admin>
+            <list-information v-if="selectedTab==1"
+                              :dataList="selectedTab==1&&dataList"
+                              :currentPage="selectedTab==1&&currentPage"
+                              :pageSize="selectedTab==1&&pageSize"
+                              @searchClick='fetchListData'
+                              @onSubmit='onSubmit'></list-information>
+            <list-article v-if="selectedTab==2"
+                          :dataList="selectedTab==2&&dataList"></list-article>
+            <list-video v-if="selectedTab==3"
+                        :dataList="selectedTab==3&&dataList"></list-video>
+            <list-issues  v-if="selectedTab==4"
+                          :dataList="selectedTab==4&&dataList"></list-issues>
+            <list-issues-comment  v-if="selectedTab==5"
+                                  :dataList="selectedTab==5&&dataList"></list-issues-comment>
+            <list-outsidelink v-if="selectedTab==6"
+                              :dataList="selectedTab==6&&dataList"></list-outsidelink>
+            <list-user  v-if="selectedTab==7"
+                        :dataList="selectedTab==7&&dataList"></list-user>
+            <list-statistics  v-if="selectedTab==8"
+                              :dataList="selectedTab==8&&dataList"></list-statistics>
+            <list-admin v-if="selectedTab==9"
+                        :dataList="selectedTab==9&&dataList"></list-admin>
           </el-main>
           <!-- 右侧：下方 分页 -->
           <el-footer>
@@ -40,10 +53,10 @@
                             @current-change="handleCurrentChange"
                             :current-page.sync="currentPage"
                             background
-                            :page-sizes="[100, 200, 300, 400]"
-                            :page-size="100"
+                            :page-sizes="[10, 15, 20, 25, 30]"
+                            :page-size="pageSize"
                             layout="sizes, prev, pager, next, total"
-                            :total="1000"></el-pagination>
+                            :total="dataList.length || 0"></el-pagination>
           </el-footer>
         </el-container>
       </el-container>
@@ -59,10 +72,16 @@ export default {
   mixins: [publicInfo, publicClass],
   data() {
     return {
+      // 当前登录管理员信息
+      adminInfo: {},
       // 当前导航选择项，默认是[公告管理]
       selectedTab: 1,
       // 当前页码
       currentPage: 1,
+      // 初始每页条数
+      pageSize: 10,
+      // 数据列表
+      dataList: [],
     }
   },
   methods: {
@@ -78,9 +97,9 @@ export default {
         type: 'warning',
         closeOnClickModal: false,
       }).then(_ => {
+        sessionStorage.clear()
         this.routeGo({name: 'Login'})
-      })
-        .catch(_ => {})
+      }).catch(_ => {})
     },
     /**
      * @Author: 殷鹏飞
@@ -89,6 +108,7 @@ export default {
      */
     selectTabClick(val) {
       this.selectedTab = val
+      this.fetchListData()
     },
     /**
      * @Author: 殷鹏飞
@@ -96,7 +116,7 @@ export default {
      * @Description: 每页条数改变时
      */
     handleSizeChange(val) {
-
+      this.pageSize = val
     },
     /**
      * @Author: 殷鹏飞
@@ -104,8 +124,64 @@ export default {
      * @Description: 当前页码改变时
      */
     handleCurrentChange(val) {
-
+      this.currentPage = val
     },
+    /**
+     * @Author: 殷鹏飞
+     * @Date: 2020-03-16 15:12:05
+     * @Description: 新建，查看，编辑，删除 确认操作
+     */
+    onSubmit(btnMark, model) {
+      // 解构接口配置对象
+      let obj = this.tabToRouterArr.find(el => el.selectedTab == this.selectedTab)
+      // 解构请求配置对象
+      let {msg, method} = this.reqArr.find(el => el.eventMark == btnMark)
+      // 请求模板参数
+      let methodModel = {
+        pMethod: this[obj[method]](model),
+        message: msg,
+        callBack: 'onSubmitCallBack',
+      }
+      this.methodQuery(methodModel)
+    },
+    /**
+     * @Author: 殷鹏飞
+     * @Date: 2020-03-16 15:12:21
+     * @Description: 新建，查看，编辑，删除 确认操作 回调
+     */
+    onSubmitCallBack(res) {
+      this.fetchListData()
+    },
+    /**
+     * @Author: 殷鹏飞
+     * @Date: 2020-03-16 13:19:10
+     * @Description: 获取页面信息
+     */
+    fetchListData(searchValue) {
+      let {portMethod} = this.tabToRouterArr.find(el => el.selectedTab == this.selectedTab)
+      // 请求模板参数
+      let methodModel = {
+        pMethod: this[portMethod]({value: searchValue}),
+        callBack: 'fetchListDataCallBack',
+      }
+      this.methodQuery(methodModel)
+    },
+    /**
+     * @Author: 殷鹏飞
+     * @Date: 2020-03-16 13:20:57
+     * @Description: 获取页面信息回调
+     */
+    fetchListDataCallBack({data}) {
+      this.dataList = data
+    },
+  },
+  mounted() {
+    // 判断是否登录状态
+    let mark = this.judgeLogin()
+    if(!mark) return this.routeGo({name: 'Login'})
+    // 从 sessionStorage 中获取用户信息
+    this.adminInfo = JSON.parse(sessionStorage.getItem('adminInfo'))
+    this.fetchListData()
   },
 }
 </script>

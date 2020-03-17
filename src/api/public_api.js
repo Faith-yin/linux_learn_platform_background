@@ -18,7 +18,7 @@ const publicApi = {
   },
   // 添加 
   addInformation(model) {
-    return axios.put(`/information/addInformation`,model)
+    return axios.post(`/information/addInformation`,model)
   },
   // 修改
   updateInformation(model) {
@@ -26,7 +26,7 @@ const publicApi = {
   },
   // 删除 
   deleteInformation(model) {
-    return axios.delete(`/information/deleteInformation`,model)
+    return axios.delete(`/information/deleteInformation/${model}`)
   },
 
 
@@ -69,6 +69,10 @@ const publicApi = {
   // 添加
   addVideo(model) {
     return axios.post(`/video/addVideo`,model)
+  },
+  // 删除
+  deleteVideo(model) {
+    return axios.post(`/video/deleteVideo`,model)
   },
 
 
@@ -165,6 +169,10 @@ const publicApi = {
   // 查询全部
   showAllAdmin(model) {
     return axios.post(`/admin/showAllAdmin`,model)
+  },
+  // 条件查询：根据名称 和 密码查询
+  findAdminByNameAndPassword(model) {
+    return axios.post(`/admin/findAdminByNameAndPassword`,model)
   },
   // 添加 
   addAdmin(model) {

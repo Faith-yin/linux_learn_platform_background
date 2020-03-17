@@ -14,14 +14,14 @@
             <!-- 标题 -->
             <div class="login-title-box">
                 <h3 class="login-title">Linux学习平台 后台管理系统</h3>
-                <div class="login-info color--gray">请登录</div>
+                <div class="login-info color--gray">请<span class="color--ff6700">管理员</span>登录：</div>
             </div>
             <!-- 账号 -->
             <el-form-item prop="username">
                 <el-input   type="text" 
                             maxlength="12"
                             prefix-icon="el-icon-user"
-                            placeholder="请输入名称" 
+                            placeholder="输入名称" 
                             v-model="form.username"/>
             </el-form-item>
             <!-- 密码 -->
@@ -30,7 +30,7 @@
                             maxlength="12"
                             show-password
                             prefix-icon="el-icon-lock"
-                            placeholder="请输入密码"
+                            placeholder="输入密码"
                             v-model="form.password"
                             @keyup.enter.native="onSubmit"/>
             </el-form-item>
@@ -57,8 +57,8 @@ export default {
     return {
       // 表单内容
       form: {
-          username: '',
-          password: '',
+          username: null,
+          password: null,
       },
       // 表单验证，需要在 el-form-item 元素中增加 prop 属性
       rules: {
@@ -78,6 +78,20 @@ export default {
      * @Description: 登录
      */
     onSubmit() {
+      this.$refs.loginForm.validate().then(() => {
+        // 请求模板参数
+        let methodModel = {
+          pMethod: this.findAdminByNameAndPassword(this.form),
+          message: '登录成功',
+          callBack: 'onSubmitCallBack',
+        }
+        this.methodQuery(methodModel)
+      })
+    },
+    onSubmitCallBack({data}) {
+      // 将管理员信息存至 sessionStorage 中
+      sessionStorage.setItem('adminInfo', JSON.stringify(data[0]))
+      // 路由跳转
       this.routeGo({name: 'HomePage'})
     },
     /**

@@ -17,12 +17,24 @@
 }
 
 
+// 文字省略...
+.font-hidden {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
 .color--999 {
   color: #999999;
 }
 
 .color--333 {
   color: #333333;
+}
+
+.color--ff6700 {
+  color: #ff6700;
 }
 
 

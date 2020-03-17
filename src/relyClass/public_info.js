@@ -5,15 +5,117 @@
  */
 import publicApi from '@/api/public_api.js'
 import publicClass from '@/mixins/public_class.js'
+import { Message } from 'element-ui'
+import moment from 'moment'
 
 export default {
   mixins: [publicClass],
   data() {
     return {
-
+      // 配置对象
+      tabToRouterArr: [
+        {
+          selectedTab: 1, 
+          portMethod: 'showAllInformation',
+          updatePortMethod: 'updateInformation',
+          addPortMethod: 'addInformation',
+          deletePortMethod: 'deleteInformation',
+        },
+        {
+          selectedTab: 2, 
+          portMethod: 'showAllArticle',
+          updatePortMethod: 'updateArticle',
+          addPortMethod: 'addArticle',
+          deletePortMethod: 'deleteArticle',
+        },
+        {
+          selectedTab: 3, 
+          portMethod: 'showAllVideo',
+          updatePortMethod: 'updateVideo',
+          addPortMethod: 'addVideo',
+          deletePortMethod: 'deleteVideo',
+        },
+        {
+          selectedTab: 4, 
+          portMethod: 'showAllIssues',
+          updatePortMethod: 'updateIssues',
+        },
+        {
+          selectedTab: 5,
+          portMethod: 'showAllIssuesComment',
+          updatePortMethod: 'updateIssuesComment',
+        },
+        {
+          selectedTab: 6, 
+          portMethod: 'showAllOutsidelink',
+          updatePortMethod: 'updateOutsidelink',
+          addPortMethod: 'addOutsidelink',
+          deletePortMethod: 'deleteOutsidelink',
+        },
+        {
+          selectedTab: 7, 
+          portMethod: 'showAllUser',
+          updatePortMethod: 'updateUserById',
+          addPortMethod: 'addUser',
+          deletePortMethod: 'deleteUserById',
+        },
+        {
+          selectedTab: 8, 
+          portMethod: '',
+          updatePortMethod: '',
+          addPortMethod: '',
+          deletePortMethod: '',
+        },
+        {
+          selectedTab: 9, 
+          portMethod: 'showAllAdmin',
+          updatePortMethod: 'updateAdmin',
+          addPortMethod: 'addAdmin',
+          deletePortMethod: 'deleteAdmin',
+        },
+      ],
+      // 请求配置对象
+      reqArr: [
+        {eventMark: 1, msg: '添加成功', method: 'addPortMethod'},    // 1新建
+        {eventMark: 3, msg: '保存成功', method: 'updatePortMethod'}, // 3编辑
+        {eventMark: 4, msg: '删除成功', method: 'deletePortMethod'}, // 4删除
+      ]
     }
   },
   methods: {
+
+// -------------------------  业务方法  ------------------------------
+
+    /**
+     * @Author: 殷鹏飞
+     * @Date: 2020-03-16 13:15:26
+     * @Description: 判断是否登录状态
+     */
+    judgeLogin() {
+      // 从 sessionStorage 中获取管理员信息
+      let adminInfo = JSON.parse(sessionStorage.getItem('adminInfo'))
+      // 如果没有管理员信息，即未登录
+      if(!adminInfo || !Object.keys(adminInfo).length) {
+        Message({showClose: true, message: '请管理员登录', type: 'warning'})
+        return false
+      }
+      return true
+    },
+
+    /**
+     * @Author: 殷鹏飞
+     * @Date: 2020-03-16 13:52:08
+     * @Description: 时间格式化
+     */   
+    formatter(row, column, cellValue, index) {
+      return moment(cellValue).format('YYYY-MM-DD HH:mm:ss')
+    }, 
+
+
+
+
+
+// -------------------------  接口方法  ------------------------------
 
     /**
      * @Author: 殷鹏飞
@@ -77,6 +179,10 @@ export default {
     // 添加
     addVideo(model) {
       return publicApi.addVideo(model)
+    },
+    // 删除
+    deleteVideo(model) {
+      return publicApi.deleteVideo(model)
     },
 
 
@@ -174,6 +280,10 @@ export default {
     showAllAdmin(model) {
       return publicApi.showAllAdmin(model)
     },
+    // 条件查询：根据名称 和 密码查询
+    findAdminByNameAndPassword(model) {
+      return publicApi.findAdminByNameAndPassword(model)
+    },
     // 添加 
     addAdmin(model) {
       return publicApi.addAdmin(model)
@@ -186,16 +296,6 @@ export default {
     deleteAdmin(model) {
       return publicApi.deleteAdmin(model)
     },
-
-
-
-
-
-
-
-
-
-
 
   }
 }

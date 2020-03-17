@@ -18,6 +18,7 @@ export default {
             let { message, pMethod, params, callBack } = model
             let options = {
               spinner: 'el-icon-loading',
+              background: 'rgba(0,0,0,0.7)',
             }
             // 打开loading
             Loading.service(options);
