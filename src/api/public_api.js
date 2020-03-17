@@ -36,8 +36,8 @@ const publicApi = {
    * @Description: article 操作接口
    */
   // 查询全部
-  showAllArticle(model) {
-    return axios.post(`/article/showAllArticle`,model)
+  showArticle(model) {
+    return axios.post(`/article/showArticle`,model)
   },
   // 添加
   addArticle(model) {
@@ -49,7 +49,7 @@ const publicApi = {
   },
   // 删除
   deleteArticle(model) {
-    return axios.delete(`/article/deleteArticle`,model)
+    return axios.delete(`/article/deleteArticle/${model}`)
   },
 
 
@@ -91,7 +91,7 @@ const publicApi = {
   },
   // 删除 
   deleteIssuesById(model) {
-    return axios.delete(`/issues/deleteIssuesById`,model)
+    return axios.delete(`/issues/deleteIssuesById/${model}`)
   },
   // issuesComment 查询全部
   showAllIssuesComment(model) {
@@ -107,7 +107,7 @@ const publicApi = {
   },
   // issuesComment 删除
   deleteIssuesComment(model) {
-    return axios.delete(`/issuesComment/deleteIssuesComment`,model)
+    return axios.delete(`/issuesComment/deleteIssuesComment/${model}`)
   },
 
 
@@ -130,7 +130,7 @@ const publicApi = {
   },
   // 删除 
   deleteOutsidelink(model) {
-    return axios.delete(`/outsidelink/deleteOutsidelink`,model)
+    return axios.delete(`/outsidelink/deleteOutsidelink/${model}`)
   },
 
 
@@ -157,7 +157,7 @@ const publicApi = {
   },
   // 删除
   deleteUserById(model) {
-    return axios.delete(`/user/deleteUserById`,model)
+    return axios.delete(`/user/deleteUserById/${model}`)
   },
 
 
@@ -184,7 +184,7 @@ const publicApi = {
   },
   // 删除
   deleteAdmin(model) {
-    return axios.delete(`/admin/deleteAdmin`,model)
+    return axios.delete(`/admin/deleteAdmin/${model}`)
   },
 
 

@@ -31,7 +31,11 @@
                               @searchClick='fetchListData'
                               @onSubmit='onSubmit'></list-information>
             <list-article v-if="selectedTab==2"
-                          :dataList="selectedTab==2&&dataList"></list-article>
+                          :dataList="selectedTab==2&&dataList"
+                          :currentPage="selectedTab==2&&currentPage"
+                          :pageSize="selectedTab==2&&pageSize"
+                          @searchClick='fetchListData'
+                          @onSubmit='onSubmit'></list-article>
             <list-video v-if="selectedTab==3"
                         :dataList="selectedTab==3&&dataList"></list-video>
             <list-issues  v-if="selectedTab==4"

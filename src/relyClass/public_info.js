@@ -23,7 +23,7 @@ export default {
         },
         {
           selectedTab: 2, 
-          portMethod: 'showAllArticle',
+          portMethod: 'showArticle',
           updatePortMethod: 'updateArticle',
           addPortMethod: 'addArticle',
           deletePortMethod: 'deleteArticle',
@@ -74,7 +74,7 @@ export default {
           deletePortMethod: 'deleteAdmin',
         },
       ],
-      // 请求配置对象
+      // 请求配置对象 2查看
       reqArr: [
         {eventMark: 1, msg: '添加成功', method: 'addPortMethod'},    // 1新建
         {eventMark: 3, msg: '保存成功', method: 'updatePortMethod'}, // 3编辑
@@ -111,6 +111,19 @@ export default {
       return moment(cellValue).format('YYYY-MM-DD HH:mm:ss')
     }, 
 
+    /**
+     * @Author: 殷鹏飞
+     * @Date: 2020-03-17 11:29:42
+     * @Description: 审核状态格式化
+     */    
+    checkStatusFormatter(row, column, cellValue, index) {
+      let str =''
+      if(cellValue == 0) str = '未通过'
+      if(cellValue == 1) str = '已通过'
+      if(cellValue == 2) str = '审核中'
+      return str
+    },
+
 
 
 
@@ -146,8 +159,8 @@ export default {
      * @Description: article 操作接口
      */
     // 查询全部
-    showAllArticle(model) {
-      return publicApi.showAllArticle(model)
+    showArticle(model) {
+      return publicApi.showArticle(model)
     },
     // 添加
     addArticle(model) {

@@ -223,12 +223,10 @@ export default {
      * @Description: 查看
      */
     handleLook(index, row) {
-      this.showDialogMark = true
       this.btnMark = 2
       let arr = ['username', 'title', 'content']
-      arr.forEach(el => {
-        this.form[el] = row[el]
-      })
+      arr.forEach(el => {this.form[el] = row[el]})
+      this.showDialogMark = true
     },
     /**
      * @Author: 殷鹏飞
@@ -236,13 +234,11 @@ export default {
      * @Description: 编辑
      */
     handleEdit(index, row) {
-      this.showDialogMark = true
       this.btnMark = 3
       let arr = ['username', 'title', 'content']
-      arr.forEach(el => {
-        this.form[el] = row[el]
-      })
+      arr.forEach(el => {this.form[el] = row[el]})
       this.rowInfo = row
+      this.showDialogMark = true
     },
     /**
      * @Author: 殷鹏飞
