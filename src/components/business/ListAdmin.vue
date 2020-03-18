@@ -184,14 +184,15 @@ export default {
       }
       // 请求参数
       let model = {password, id: this.rowInfo.id}
-      // 如果修改者是超级管理员(id==1000) && 并且修改的不是自己的信息，则不需要重新登录
+      // 取出管理员id
       let adminId = JSON.parse(sessionStorage.getItem('adminInfo')).id
+      // 判断：如果修改者是超级管理员(id==1000) && 并且修改的不是自己的信息，则不需要重新登录
       if(adminId === 1000 && this.rowInfo.id !== 1000) {
         this.$emit('onSubmit',this.btnMark,model)
         this.showDialogMark = false
         return;
       }
-      // 如果是普通管理员操作，则需要重新登录
+      // 判断：如果是普通管理员操作 || 或者超管修改自己的信息，则需要重新登录
       if(username !== this.rowInfo.username) model = {username, ...model}
       this.$confirm('修改账户信息后需重新登录, 是否继续?', '提示', {
         confirmButtonText: '确定',

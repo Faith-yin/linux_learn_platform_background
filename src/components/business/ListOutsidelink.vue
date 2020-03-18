@@ -45,7 +45,7 @@
                         label="链接"
                         width="240">
         <template slot-scope="scoped">
-          <el-link target="_blank" type="success" :href="scoped.row.link">打开链接({{scoped.row.link}})</el-link>
+          <el-link target="_blank" type="success" :href="scoped.row.link">打开链接</el-link>
         </template>
       </el-table-column>
       <el-table-column  prop="viewCount"
