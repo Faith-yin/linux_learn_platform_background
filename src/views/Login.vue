@@ -22,7 +22,8 @@
                             maxlength="12"
                             prefix-icon="el-icon-user"
                             placeholder="输入名称" 
-                            v-model="form.username"/>
+                            v-model="form.username"
+                            @keyup.enter.native="onSubmit"/>
             </el-form-item>
             <!-- 密码 -->
             <el-form-item prop="password">

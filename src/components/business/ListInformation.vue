@@ -24,27 +24,38 @@
               highlight-current-row
               style="width: 100%">
       <el-table-column  type="index"
+                        header-align="center"
                         label="索引"
                         width="50"
                         :index="1"></el-table-column>
       <el-table-column  show-overflow-tooltip
+                        header-align="center"
                         prop="title"
                         label="标题"
                         width="220"></el-table-column>
       <el-table-column  show-overflow-tooltip
+                        header-align="center"
                         prop="content"
                         label="内容"
-                        width="450"></el-table-column>
+                        width="340"></el-table-column>
+      <el-table-column  prop="viewCount"
+                        header-align="center"
+                        show-overflow-tooltip
+                        label="浏览次数"
+                        width="100"></el-table-column>
       <el-table-column  show-overflow-tooltip
+                        header-align="center"
                         prop="username"
                         label="发布者(管理员)"
                         width="170"></el-table-column>
       <el-table-column  show-overflow-tooltip
+                        header-align="center"
                         :formatter='formatter'
                         prop="date"
                         label="发布时间"
                         width="170"></el-table-column>
       <el-table-column  label="操作"
+                        header-align="center"
                         width="220">
         <template slot-scope="scope">
           <el-button  size="mini"
@@ -101,9 +112,9 @@ export default {
       default: [],
     },
     // 当前页码
-    currentPage: [String, Number],
+    currentPage: [Number],
     // 每页条数
-    pageSize: [String, Number],
+    pageSize: [Number],
   },
   mixins: [publicClass, publicInfo],
   data() {

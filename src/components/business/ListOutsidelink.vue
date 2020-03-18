@@ -15,37 +15,51 @@
                 class="input-with-select">
         <el-button @click="searchClick" slot="append" icon="el-icon-search"></el-button>
       </el-input>
-      <el-button @click="showDialogMark=true" type="primary">新建</el-button>
+      <el-button @click="addClick" type="primary">新建</el-button>
     </div>
     <!-- 表格 -->
-    <el-table :data="tableData"
+    <el-table :data="dataList.slice((currentPage-1)*pageSize, currentPage*pageSize)"
               height="470"
               border
               highlight-current-row
               style="width: 100%">
       <el-table-column  type="index"
                         label="索引"
+                        header-align="center"
+                        show-overflow-tooltip
                         width="50"
                         :index="1"></el-table-column>
-      <el-table-column  prop="date"
+      <el-table-column  prop="title"
+                        show-overflow-tooltip
+                        header-align="center"
                         label="标题"
-                        width="180"></el-table-column>
-      <el-table-column  prop="name"
-                        label="内容"
-                        width="260"></el-table-column>
-      <el-table-column  prop="link"
-                        label="链接"
                         width="190"></el-table-column>
+      <el-table-column  prop="content"
+                        show-overflow-tooltip
+                        header-align="center"
+                        label="内容"
+                        width="350"></el-table-column>
+      <el-table-column  prop="link"
+                        show-overflow-tooltip
+                        header-align="center"
+                        label="链接"
+                        width="240">
+        <template slot-scope="scoped">
+          <el-link target="_blank" type="success" :href="scoped.row.link">打开链接({{scoped.row.link}})</el-link>
+        </template>
+      </el-table-column>
       <el-table-column  prop="viewCount"
+                        show-overflow-tooltip
+                        header-align="center"
                         label="浏览次数"
-                        width="100"></el-table-column>
+                        width="120"></el-table-column>
       <el-table-column  prop="username"
+                        show-overflow-tooltip
+                        header-align="center"
                         label="发布者(管理员)"
                         width="120"></el-table-column>
-      <el-table-column  prop="date"
-                        label="发布时间"
-                        width="160"></el-table-column>
       <el-table-column  label="操作"
+                        header-align="center"
                         width="220">
         <template slot-scope="scope">
           <el-button  size="mini"
@@ -69,10 +83,12 @@
         </el-form-item>
         <el-form-item label="标题" required>
           <el-input v-model="form.title" 
+                    :disabled="btnMark==2"
                     autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="内容" required>
           <el-input v-model="form.content" 
+                    :disabled="btnMark==2"
                     rows=4
                     show-word-limit
                     maxlength=120
@@ -81,19 +97,35 @@
         </el-form-item>
         <el-form-item label="链接" required>
           <el-input v-model="form.link" 
+                    :disabled="btnMark==2"
                     autocomplete="off"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="addCancel">取 消</el-button>
-        <el-button type="primary" @click="addSubmit">确 定</el-button>
+        <el-button type="primary" @click="checkHandle">确 定</el-button>
       </div>
     </el-dialog>
   </div>
 </template>
 
 <script>
+import publicClass from '@/mixins/public_class.js'
+import publicInfo from '@/relyClass/public_info.js'
+
 export default {
+  props: {
+    // 数据列表
+    dataList: {
+      type: Array,
+      default: [],
+    },
+    // 当前页码
+    currentPage: [Number],
+    // 每页条数
+    pageSize: [Number],
+  },
+  mixins: [publicClass, publicInfo],
   data() {
     return {
       // 搜索值
@@ -107,23 +139,10 @@ export default {
         content: null,
         link: null,
       },
-      // 数据列表
-      tableData: [
-        {date: '2016-05-03 09:28:00',viewCount:29,name: '王小虎',address: '上海市普陀区金沙江路 1518 弄',username:'Admin',checkStatus: '审核中'}, 
-        {date: '2016-05-03 09:28:00',viewCount:29,name: '王小虎',address: '上海市普陀区金沙江路 1518 弄',username:'Admin',checkStatus: '已通过'}, 
-        {date: '2016-05-03 09:28:00',viewCount:29,name: '王小虎',address: '上海市普陀区金沙江路 1518 弄',username:'Admin',checkStatus: '未通过'}, 
-        {date: '2016-05-03 09:28:00',viewCount:29,name: '王小虎',address: '上海市普陀区金沙江路 1518 弄',username:'Admin',checkStatus: '已通过'}, 
-        {date: '2016-05-03 09:28:00',viewCount:29,name: '王小虎',address: '上海市普陀区金沙江路 1518 弄',username:'Admin',checkStatus: '未通过'}, 
-        {date: '2016-05-03 09:28:00',viewCount:29,name: '王小虎',address: '上海市普陀区金沙江路 1518 弄',username:'Admin',checkStatus: '已通过'}, 
-        {date: '2016-05-03 09:28:00',viewCount:29,name: '王小虎',address: '上海市普陀区金沙江路 1518 弄',username:'Admin',checkStatus: '审核中'}, 
-        {date: '2016-05-03 09:28:00',viewCount:29,name: '王小虎',address: '上海市普陀区金沙江路 1518 弄',username:'Admin',checkStatus: '已通过'}, 
-        {date: '2016-05-03 09:28:00',viewCount:29,name: '王小虎',address: '上海市普陀区金沙江路 1518 弄',username:'Admin',checkStatus: '审核中'}, 
-        {date: '2016-05-03 09:28:00',viewCount:29,name: '王小虎',address: '上海市普陀区金沙江路 1518 弄',username:'Admin',checkStatus: '未通过'}, 
-        {date: '2016-05-03 09:28:00',viewCount:29,name: '王小虎',address: '上海市普陀区金沙江路 1518 弄',username:'Admin',checkStatus: '审核中'}, 
-        {date: '2016-05-03 09:28:00',viewCount:29,name: '王小虎',address: '上海市普陀区金沙江路 1518 弄',username:'Admin',checkStatus: '审核中'}, 
-        {date: '2016-05-03 09:28:00',viewCount:29,name: '王小虎',address: '上海市普陀区金沙江路 1518 弄',username:'Admin',checkStatus: '审核中'}, 
-        {date: '2016-05-03 09:28:00',viewCount:29,name: '王小虎',address: '上海市普陀区金沙江路 1518 弄',username:'Admin',checkStatus: '审核中'}, 
-      ]
+      // 按钮点击标记：1新建，2查看，3编辑，4删除
+      btnMark: null,
+      // 点击[编辑]，当前行信息
+      rowInfo: {},
     }
   },
   methods: {
@@ -133,7 +152,7 @@ export default {
      * @Description: 搜索
      */
     searchClick() {
-      console.log('搜索-->',this.searchValue);
+      this.$emit('searchClick',this.searchValue)
     },
     /**
      * @Author: 殷鹏飞
@@ -141,16 +160,54 @@ export default {
      * @Description: 关闭弹框时
      */
     beforeClose() {
-      let arr = ['title', 'content']
+      let arr = ['title', 'content', 'link']
       arr.forEach(el => this.form[el] = null)
     },
     /**
      * @Author: 殷鹏飞
+     * @Date: 2020-03-17 16:30:20
+     * @Description: 确定当前操作: 1新建，2查看，3编辑, 4删除
+     */
+    checkHandle() {
+      let {btnMark} = this
+      // 1新建
+      if(btnMark == 1) return this.addSubmit()
+      // 2查看
+      if(btnMark == 2) return this.showDialogMark = false
+      // 3编辑
+      if(btnMark == 3) return this.updateSubmit()
+    },
+    /**
+     * @Author: 殷鹏飞
      * @Date: 2020-03-13 21:34:28
-     * @Description: 弹窗确定事件
+     * @Description: 新建确定事件
      */
     addSubmit() {
-
+      let {title, content, link} = this.form
+      // 表单检验
+      let mark = this.formRequired({arr: {title, content, link}, msg: '请输入必填项'})
+      if(!mark)return;
+      // 取出管理员信息id
+      let adminId = JSON.parse(sessionStorage.getItem('adminInfo')).id
+      // 请求参数
+      let model = {title, content, adminId, link}
+      this.$emit('onSubmit',this.btnMark,model)
+      this.showDialogMark = false
+    },
+    /**
+     * @Author: 殷鹏飞
+     * @Date: 2020-03-17 16:35:37
+     * @Description: 编辑确定事件
+     */
+    updateSubmit() {
+      let {title, content, link} = this.form
+      // 表单校验
+      let mark = this.formRequired({arr: {title, content, link}, msg: '请输入必填项'})
+      if(!mark)return;
+      // 请求参数
+      let model = {id: this.rowInfo.id, title, content, link}
+      this.$emit('onSubmit',this.btnMark,model)
+      this.showDialogMark = false
     },
     /**
      * @Author: 殷鹏飞
@@ -158,9 +215,19 @@ export default {
      * @Description: 弹窗取消事件
      */
     addCancel() {
-      let arr = ['title', 'content']
+      let arr = ['title', 'content' ,'link']
       arr.forEach(el => this.form[el] = null)
       this.showDialogMark = false
+    },
+    /**
+     * @Author: 殷鹏飞
+     * @Date: 2020-03-16 14:15:22
+     * @Description: 新建
+     */
+    addClick() {
+      this.showDialogMark = true
+      this.btnMark = 1
+      this.form.username = JSON.parse(sessionStorage.getItem('adminInfo')).username
     },
     /**
      * @Author: 殷鹏飞
@@ -168,6 +235,9 @@ export default {
      * @Description: 查看
      */
     handleLook(index, row) {
+      this.btnMark = 2
+      let arr = ['username', 'title', 'content', 'link']
+      arr.forEach(el => {this.form[el] = row[el]})
       this.showDialogMark = true
     },
     /**
@@ -176,7 +246,10 @@ export default {
      * @Description: 编辑
      */
     handleEdit(index, row) {
-      console.log(index, row);
+      this.btnMark = 3
+      let arr = ['username', 'title', 'content', 'link']
+      arr.forEach(el => {this.form[el] = row[el]})
+      this.rowInfo = row
       this.showDialogMark = true
     },
     /**
@@ -190,7 +263,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning',
         closeOnClickModal: false,
-      }).then(_ => {this.onDelete()})
+      }).then(_ => {this.onDelete(row)})
         .catch(_ => {})
     },
     /**
@@ -198,8 +271,9 @@ export default {
      * @Date: 2020-03-14 10:28:00
      * @Description: 删除确认操作
      */
-    onDelete() {
-      console.log('删除确认操作');
+    onDelete(row) {
+      this.btnMark = 4
+      this.$emit('onSubmit',this.btnMark,row.id)
     },
   }
 }

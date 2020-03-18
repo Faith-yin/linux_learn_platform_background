@@ -30,7 +30,7 @@ export default {
         },
         {
           selectedTab: 3, 
-          portMethod: 'showAllVideo',
+          portMethod: 'showVideo',
           updatePortMethod: 'updateVideo',
           addPortMethod: 'addVideo',
           deletePortMethod: 'deleteVideo',
@@ -39,11 +39,13 @@ export default {
           selectedTab: 4, 
           portMethod: 'showAllIssues',
           updatePortMethod: 'updateIssues',
+          deletePortMethod: 'deleteIssuesById',
         },
         {
           selectedTab: 5,
           portMethod: 'showAllIssuesComment',
           updatePortMethod: 'updateIssuesComment',
+          deletePortMethod: 'deleteIssuesComment',
         },
         {
           selectedTab: 6, 
@@ -55,7 +57,7 @@ export default {
         {
           selectedTab: 7, 
           portMethod: 'showAllUser',
-          updatePortMethod: 'updateUserById',
+          updatePortMethod: 'updateUserPassword',
           addPortMethod: 'addUser',
           deletePortMethod: 'deleteUserById',
         },
@@ -114,13 +116,40 @@ export default {
     /**
      * @Author: 殷鹏飞
      * @Date: 2020-03-17 11:29:42
-     * @Description: 审核状态格式化
+     * @Description: 审核状态格式化： 数字-->文字
      */    
     checkStatusFormatter(row, column, cellValue, index) {
       let str =''
-      if(cellValue == 0) str = '未通过'
-      if(cellValue == 1) str = '已通过'
-      if(cellValue == 2) str = '审核中'
+      if(cellValue == 3) str = '未通过'
+      if(cellValue == 2) str = '已通过'
+      if(cellValue == 1) str = '审核中'
+      return str
+    },
+
+    /**
+     * @Author: 殷鹏飞
+     * @Date: 2020-03-17 11:29:42
+     * @Description: 审核状态格式化： 文字-->数字
+     */    
+    checkStatsToNum(val) {
+      let number = 0
+      if(val == '未通过') number = 3
+      if(val == '已通过') number = 2
+      if(val == '审核中') number = 1
+      return number
+    },
+
+    /**
+     * @Author: 殷鹏飞
+     * @Date: 2020-03-18 11:26:09
+     * @Description: 字符串加***展示
+     */    
+    encriptStr(row, column, cellValue, index) {
+      if(typeof(cellValue) != 'string')return;
+      let str = ''
+      for(let i=0; i<cellValue.length; i++) {
+        str += '*'
+      }
       return str
     },
 
@@ -182,8 +211,8 @@ export default {
      * @Description: video 操作接口
      */
     // 查询全部
-    showAllVideo(model) {
-      return publicApi.showAllVideo(model)
+    showVideo(model) {
+      return publicApi.showVideo(model)
     },
     // 修改
     updateVideo(model) {
@@ -278,6 +307,10 @@ export default {
     updateUserById(model) {
       return publicApi.updateUserById(model)
     },
+    // 修改：重置密码
+    updateUserPassword(model) {
+      return publicApi.updateUserPassword(model)
+    },
     // 删除
     deleteUserById(model) {
       return publicApi.deleteUserById(model)
@@ -310,5 +343,29 @@ export default {
       return publicApi.deleteAdmin(model)
     },
 
+
+    /**
+     * @Author: 殷鹏飞
+     * @Date: 2020-03-11 17:11:14
+     * @Description: 文件(video,image,audio等)上传服务器 相关接口
+     */ 
+    // 视频上传
+    uploadVideo(model) {
+      let config = {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }
+      return publicApi.uploadVideo(model, config)
+    },
+    // 图片上传
+    uploadImg(model) {
+      let config = {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }
+      return publicApi.uploadImg(model, config)
+    }
   }
 }

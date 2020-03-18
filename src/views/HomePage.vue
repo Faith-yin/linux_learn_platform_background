@@ -37,19 +37,47 @@
                           @searchClick='fetchListData'
                           @onSubmit='onSubmit'></list-article>
             <list-video v-if="selectedTab==3"
-                        :dataList="selectedTab==3&&dataList"></list-video>
+                        :dataList="selectedTab==3&&dataList"
+                        :currentPage="selectedTab==3&&currentPage"
+                        :pageSize="selectedTab==3&&pageSize"
+                        @searchClick='fetchListData'
+                        @onSubmit='onSubmit'></list-video>
             <list-issues  v-if="selectedTab==4"
-                          :dataList="selectedTab==4&&dataList"></list-issues>
+                          :dataList="selectedTab==4&&dataList"
+                          :currentPage="selectedTab==4&&currentPage"
+                          :pageSize="selectedTab==4&&pageSize"
+                          @searchClick='fetchListData'
+                          @onSubmit='onSubmit'></list-issues>
             <list-issues-comment  v-if="selectedTab==5"
-                                  :dataList="selectedTab==5&&dataList"></list-issues-comment>
+                                  :dataList="selectedTab==5&&dataList"
+                                  :currentPage="selectedTab==5&&currentPage"
+                                  :pageSize="selectedTab==5&&pageSize"
+                                  @searchClick='fetchListData'
+                                  @onSubmit='onSubmit'></list-issues-comment>
             <list-outsidelink v-if="selectedTab==6"
-                              :dataList="selectedTab==6&&dataList"></list-outsidelink>
+                              :dataList="selectedTab==6&&dataList"
+                              :currentPage="selectedTab==6&&currentPage"
+                              :pageSize="selectedTab==6&&pageSize"
+                              @searchClick='fetchListData'
+                              @onSubmit='onSubmit'></list-outsidelink>
             <list-user  v-if="selectedTab==7"
-                        :dataList="selectedTab==7&&dataList"></list-user>
+                        :dataList="selectedTab==7&&dataList"
+                        :currentPage="selectedTab==7&&currentPage"
+                        :pageSize="selectedTab==7&&pageSize"
+                        @searchClick='fetchListData'
+                        @onSubmit='onSubmit'></list-user>
             <list-statistics  v-if="selectedTab==8"
-                              :dataList="selectedTab==8&&dataList"></list-statistics>
+                              :dataList="selectedTab==8&&dataList"
+                              :currentPage="selectedTab==8&&currentPage"
+                              :pageSize="selectedTab==8&&pageSize"
+                              @searchClick='fetchListData'
+                              @onSubmit='onSubmit'></list-statistics>
             <list-admin v-if="selectedTab==9"
-                        :dataList="selectedTab==9&&dataList"></list-admin>
+                        :dataList="selectedTab==9&&dataList"
+                        :currentPage="selectedTab==9&&currentPage"
+                        :pageSize="selectedTab==9&&pageSize"
+                        @searchClick='fetchListData'
+                        @onSubmit='onSubmit'></list-admin>
           </el-main>
           <!-- 右侧：下方 分页 -->
           <el-footer>
@@ -57,7 +85,7 @@
                             @current-change="handleCurrentChange"
                             :current-page.sync="currentPage"
                             background
-                            :page-sizes="[10, 15, 20, 25, 30]"
+                            :page-sizes="[10, 20, 30, 40, 50]"
                             :page-size="pageSize"
                             layout="sizes, prev, pager, next, total"
                             :total="dataList.length || 0"></el-pagination>

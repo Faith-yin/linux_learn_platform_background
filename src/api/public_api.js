@@ -59,8 +59,8 @@ const publicApi = {
    * @Description: video 操作接口
    */
   // 查询全部
-  showAllVideo(model) {
-    return axios.post(`/video/showAllVideo`,model)
+  showVideo(model) {
+    return axios.post(`/video/showVideo`,model)
   },
   // 修改
   updateVideo(model) {
@@ -72,7 +72,7 @@ const publicApi = {
   },
   // 删除
   deleteVideo(model) {
-    return axios.post(`/video/deleteVideo`,model)
+    return axios.delete(`/video/deleteVideo/${model}`)
   },
 
 
@@ -155,6 +155,10 @@ const publicApi = {
   updateUserById(model) {
     return axios.put(`/user/updateUserById`,model)
   },
+  // 修改：重置密码
+  updateUserPassword(model) {
+    return axios.put(`/user/updateUserPassword/${model}`)
+  },
   // 删除
   deleteUserById(model) {
     return axios.delete(`/user/deleteUserById/${model}`)
@@ -187,6 +191,20 @@ const publicApi = {
     return axios.delete(`/admin/deleteAdmin/${model}`)
   },
 
+
+  /**
+   * @Author: 殷鹏飞
+   * @Date: 2020-03-11 17:11:14
+   * @Description: 文件(video,image,audio等)上传服务器 相关接口
+   */ 
+  // 视频上传
+  uploadVideo(model, config) {
+    return axios.post(`/uploadFile/uploadVideo`, model, config)
+  },
+  // 图片上传 
+  uploadImg(model, config) {
+    return axios.post(`/uploadFile/uploadImg`, model, config)
+  },
 
 
 }

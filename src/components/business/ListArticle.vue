@@ -23,42 +23,50 @@
               highlight-current-row
               style="width: 100%">
       <el-table-column  type="index"
+                        header-align="center"
                         label="索引"
                         width="50"
                         :index="1"></el-table-column>
       <el-table-column  prop="title"
+                        header-align="center"
                         show-overflow-tooltip
                         label="标题"
                         width="220"></el-table-column>
       <el-table-column  prop="content"
                         show-overflow-tooltip
+                        header-align="center"
                         label="内容"
                         width="280"></el-table-column>
       <el-table-column  prop="viewCount"
                         show-overflow-tooltip
+                        header-align="center"
                         label="浏览次数"
                         width="100"></el-table-column>
       <el-table-column  prop="username"
-                        label="发布者"
-                        width="170"></el-table-column>
+                        label="发布者(用户)"
+                        header-align="center"
+                        width="140"></el-table-column>
       <el-table-column  prop="date"
                         show-overflow-tooltip
                         :formatter='formatter'
+                        header-align="center"
                         label="发布时间"
                         width="160"></el-table-column>
       <el-table-column  prop="checkStatus"
                         show-overflow-tooltip
+                        header-align="center"
                         :formatter='checkStatusFormatter'
                         label="审核状态"
                         width="80"></el-table-column>
       <el-table-column  label="操作"
-                        width="220">
+                        header-align="center"
+                        width="250">
         <template slot-scope="scope">
           <el-button  size="mini"
                       @click="handleLook(scope.$index, scope.row)">查看</el-button>
           <el-button  size="mini"
                       type="primary"
-                      @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                      @click="handleEdit(scope.$index, scope.row)">更改状态</el-button>
           <el-button  type="danger" 
                       size="mini"
                       @click="handleDelete(scope.$index, scope.row)">删除</el-button>
@@ -87,9 +95,9 @@
         </el-form-item>
         <el-form-item label="审核状态" prop="checkStatus" required>
           <el-select v-model="form.checkStatus" placeholder="请选择" :disabled="btnMark==2">
-            <el-option label="审核中" value="2"></el-option>
-            <el-option label="未通过" value="0"></el-option>
-            <el-option label="已通过" value="1"></el-option>
+            <el-option label="审核中" value="1"></el-option>
+            <el-option label="未通过" value="3"></el-option>
+            <el-option label="已通过" value="2"></el-option>
           </el-select>
         </el-form-item>
       </el-form>
@@ -113,9 +121,9 @@ export default {
       default: [],
     },
     // 当前页码
-    currentPage: [String, Number],
+    currentPage: [Number],
     // 每页条数
-    pageSize: [String, Number],
+    pageSize: [Number],
   },
   mixins: [publicClass, publicInfo],
   data() {
@@ -173,16 +181,16 @@ export default {
      * @Description: 编辑确定事件
      */
     updateSubmit() {
-      let {title, content, checkStatus} = this.form
+      let {checkStatus} = this.form
       // 表单校验
-      let mark = this.formRequired({arr: {title, content, checkStatus}, msg: '请输入必填项'})
+      let mark = this.formRequired({arr: {checkStatus}, msg: '请输入必填项'})
       if(!mark)return;
+      // 状态格式化为数字标识
+      let checkStatusToNum = this.checkStatsToNum(checkStatus)
       // 请求参数
       let model = {
         id: this.rowInfo.id,
-        title,
-        content,
-        checkStatus,
+        checkStatus: checkStatusToNum,
       }
       this.$emit('onSubmit',this.btnMark,model)
       this.showDialogMark = false

@@ -24,16 +24,20 @@
               highlight-current-row
               style="width: 100%">
       <el-table-column  type="index"
+                        header-align="center"
                         label="索引"
                         width="90"
                         :index="1"></el-table-column>
       <el-table-column  prop="date"
+                        header-align="center"
                         label="名称"
                         width="480"></el-table-column>
       <el-table-column  prop="name"
+                        header-align="center"
                         label="密码"
                         width="480"></el-table-column>
       <el-table-column  label="操作"
+                        header-align="center"
                         width="220">
         <template slot-scope="scope">
           <el-button  size="mini"
