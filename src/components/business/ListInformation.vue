@@ -25,6 +25,7 @@
               style="width: 100%">
       <el-table-column  type="index"
                         header-align="center"
+                        show-overflow-tooltip
                         label="索引"
                         width="50"
                         :index="1"></el-table-column>
@@ -56,6 +57,7 @@
                         width="170"></el-table-column>
       <el-table-column  label="操作"
                         header-align="center"
+                        show-overflow-tooltip
                         width="220">
         <template slot-scope="scope">
           <el-button  size="mini"

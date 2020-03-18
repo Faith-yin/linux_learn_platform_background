@@ -76,7 +76,7 @@ export default {
           deletePortMethod: 'deleteAdmin',
         },
       ],
-      // 请求配置对象 2查看
+      // 请求配置对象   2查看
       reqArr: [
         {eventMark: 1, msg: '添加成功', method: 'addPortMethod'},    // 1新建
         {eventMark: 3, msg: '保存成功', method: 'updatePortMethod'}, // 3编辑

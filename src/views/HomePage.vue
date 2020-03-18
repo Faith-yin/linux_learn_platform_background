@@ -129,6 +129,7 @@ export default {
         type: 'warning',
         closeOnClickModal: false,
       }).then(_ => {
+        // 清除sessionStorage暂存的账户信息
         sessionStorage.clear()
         this.routeGo({name: 'Login'})
       }).catch(_ => {})
@@ -190,10 +191,11 @@ export default {
      * @Description: 获取页面信息
      */
     fetchListData(searchValue) {
+      let {id} = this.adminInfo
       let {portMethod} = this.tabToRouterArr.find(el => el.selectedTab == this.selectedTab)
       // 请求模板参数
       let methodModel = {
-        pMethod: this[portMethod]({value: searchValue}),
+        pMethod: this[portMethod]({value: searchValue, id}),
         callBack: 'fetchListDataCallBack',
       }
       this.methodQuery(methodModel)

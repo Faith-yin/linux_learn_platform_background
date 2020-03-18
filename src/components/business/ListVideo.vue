@@ -15,7 +15,6 @@
                 class="input-with-select">
         <el-button @click="searchClick" slot="append" icon="el-icon-search"></el-button>
       </el-input>
-      {{pageSize}}
     </div>
     <!-- 表格 -->
     <el-table :data="dataList"
