@@ -89,11 +89,13 @@ export default {
         this.methodQuery(methodModel)
       })
     },
-    onSubmitCallBack({data}) {
+    async onSubmitCallBack({data}) {
       // 将管理员信息存至 sessionStorage 中
       sessionStorage.setItem('adminInfo', JSON.stringify(data[0]))
+      // 将最新登录时间存至数据库中
+      let res = await this.updateAdmin({id: data[0].id,lastLoginTime: this.timeFormat(new Date())})
       // 路由跳转
-      this.routeGo({name: 'HomePage'})
+      if(res.status ===200) this.routeGo({name: 'HomePage'})
     },
     /**
      * @Author: 殷鹏飞

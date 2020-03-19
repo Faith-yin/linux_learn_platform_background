@@ -15,7 +15,7 @@
                 class="input-with-select">
         <el-button @click="searchClick" slot="append" icon="el-icon-search"></el-button>
       </el-input>
-      <el-button @click="addClick" type="primary">新建</el-button>
+      <el-button v-if="adminInfo.id===1000" @click="addClick" type="primary">新建</el-button>
     </div>
     <!-- 表格 -->
     <el-table :data="dataList.slice((currentPage-1)*pageSize, currentPage*pageSize)"
@@ -24,24 +24,30 @@
               highlight-current-row
               style="width: 100%">
       <el-table-column  type="index"
-                        header-align="center"
+                        align="center"
                         show-overflow-tooltip
                         label="索引"
                         width="90"
                         :index="1"></el-table-column>
       <el-table-column  prop="username"
-                        header-align="center"
+                        align="center"
                         show-overflow-tooltip
                         label="名称"
-                        width="480"></el-table-column>
+                        width="320"></el-table-column>
       <el-table-column  prop="password"
-                        header-align="center"
+                        align="center"
                         show-overflow-tooltip
                         :formatter="encriptStr"
                         label="密码"
-                        width="480"></el-table-column>
+                        width="320"></el-table-column>
+      <el-table-column  prop="lastLoginTime"
+                        align="center"
+                        show-overflow-tooltip
+                        :formatter='formatter'
+                        label="最后登录时间"
+                        width="320"></el-table-column>
       <el-table-column  label="操作"
-                        header-align="center"
+                        align="center"
                         show-overflow-tooltip
                         width="220">
         <template slot-scope="scope">
@@ -117,6 +123,8 @@ export default {
       btnMark: null,
       // 点击[编辑]，当前行信息
       rowInfo: {},
+      // 管理员信息
+      adminInfo: JSON.parse(sessionStorage.getItem('adminInfo')),
     }
   },
   methods: {

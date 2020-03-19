@@ -25,23 +25,23 @@
               style="width: 100%">
       <el-table-column  type="index"
                         label="索引"
-                        header-align="center"
+                        align="center"
                         show-overflow-tooltip
                         width="50"
                         :index="1"></el-table-column>
       <el-table-column  prop="title"
                         show-overflow-tooltip
-                        header-align="center"
+                        align="center"
                         label="标题"
                         width="190"></el-table-column>
       <el-table-column  prop="content"
                         show-overflow-tooltip
-                        header-align="center"
+                        align="center"
                         label="内容"
                         width="350"></el-table-column>
       <el-table-column  prop="link"
                         show-overflow-tooltip
-                        header-align="center"
+                        align="center"
                         label="链接"
                         width="240">
         <template slot-scope="scoped">
@@ -50,16 +50,16 @@
       </el-table-column>
       <el-table-column  prop="viewCount"
                         show-overflow-tooltip
-                        header-align="center"
+                        align="center"
                         label="浏览次数"
                         width="120"></el-table-column>
       <el-table-column  prop="username"
                         show-overflow-tooltip
-                        header-align="center"
+                        align="center"
                         label="发布者(管理员)"
                         width="120"></el-table-column>
       <el-table-column  label="操作"
-                        header-align="center"
+                        align="center"
                         width="220">
         <template slot-scope="scope">
           <el-button  size="mini"

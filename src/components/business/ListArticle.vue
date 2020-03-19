@@ -23,43 +23,43 @@
               highlight-current-row
               style="width: 100%">
       <el-table-column  type="index"
-                        header-align="center"
+                        align="center"
                         label="索引"
                         width="50"
                         :index="1"></el-table-column>
       <el-table-column  prop="title"
-                        header-align="center"
+                        align="center"
                         show-overflow-tooltip
                         label="标题"
                         width="220"></el-table-column>
       <el-table-column  prop="content"
                         show-overflow-tooltip
-                        header-align="center"
+                        align="center"
                         label="内容"
                         width="280"></el-table-column>
       <el-table-column  prop="viewCount"
                         show-overflow-tooltip
-                        header-align="center"
+                        align="center"
                         label="浏览次数"
                         width="100"></el-table-column>
       <el-table-column  prop="username"
                         label="发布者(用户)"
-                        header-align="center"
+                        align="center"
                         width="140"></el-table-column>
       <el-table-column  prop="date"
                         show-overflow-tooltip
                         :formatter='formatter'
-                        header-align="center"
+                        align="center"
                         label="发布时间"
                         width="160"></el-table-column>
       <el-table-column  prop="checkStatus"
                         show-overflow-tooltip
-                        header-align="center"
+                        align="center"
                         :formatter='checkStatusFormatter'
                         label="审核状态"
                         width="80"></el-table-column>
       <el-table-column  label="操作"
-                        header-align="center"
+                        align="center"
                         width="250">
         <template slot-scope="scope">
           <el-button  size="mini"

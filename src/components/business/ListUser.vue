@@ -24,13 +24,13 @@
               highlight-current-row
               style="width: 100%">
       <el-table-column  type="index"
-                        header-align="center"
+                        align="center"
                         label="索引"
                         width="50"
                         :index="1"></el-table-column>
       <el-table-column  prop="photo"
                         show-overflow-tooltip
-                        header-align="center"
+                        align="center"
                         label="头像"
                         width="90">
         <template slot-scope="scope">
@@ -39,32 +39,32 @@
       </el-table-column>
       <el-table-column  prop="username"
                         show-overflow-tooltip
-                        header-align="center"
+                        align="center"
                         label="名称"
                         width="120"></el-table-column>
       <el-table-column  prop="password"
                         show-overflow-tooltip
                         :formatter="encriptStr"
-                        header-align="center"
+                        align="center"
                         label="密码"
                         width="120"></el-table-column>
       <el-table-column  prop="sex"
                         show-overflow-tooltip
-                        header-align="center"
+                        align="center"
                         label="性别"
                         width="100"></el-table-column>
       <el-table-column  prop="birthday"
                         show-overflow-tooltip
-                        header-align="center"
+                        align="center"
                         label="生日"
                         width="170"></el-table-column>
       <el-table-column  prop="description"
                         show-overflow-tooltip
-                        header-align="center"
+                        align="center"
                         label="签名"
                         width="380"></el-table-column>
       <el-table-column  label="操作"
-                        header-align="center"
+                        align="center"
                         width="250">
         <template slot-scope="scope">
           <el-button  size="mini"

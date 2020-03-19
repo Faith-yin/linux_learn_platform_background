@@ -23,33 +23,33 @@
               highlight-current-row
               style="width: 100%">
       <el-table-column  type="index"
-                        header-align="center"
+                        align="center"
                         label="索引"
                         width="50"
                         :index="1"></el-table-column>
       <el-table-column  prop="title"
                         label="Issue标题"
-                        header-align="center"
+                        align="center"
                         show-overflow-tooltip
                         width="220"></el-table-column>
       <el-table-column  prop="content"
                         label="评论内容"
-                        header-align="center"
+                        align="center"
                         show-overflow-tooltip
                         width="450"></el-table-column>
       <el-table-column  prop="username"
                         label="评论者(用户)"
-                        header-align="center"
+                        align="center"
                         show-overflow-tooltip
                         width="170"></el-table-column>
       <el-table-column  prop="date"
                         label="评论时间"
-                        header-align="center"
+                        align="center"
                         :formatter='formatter'
                         show-overflow-tooltip
                         width="170"></el-table-column>
       <el-table-column  label="操作"
-                        header-align="center"
+                        align="center"
                         width="220">
         <template slot-scope="scope">
           <el-button  size="mini"

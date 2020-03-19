@@ -24,22 +24,22 @@
               style="width: 100%">
       <el-table-column  type="index"
                         label="索引"
-                        header-align="center"
+                        align="center"
                         width="50"
                         :index="1"></el-table-column>
       <el-table-column  prop="title"
                         show-overflow-tooltip
-                        header-align="center"
+                        align="center"
                         label="标题"
                         width="160"></el-table-column>
       <el-table-column  prop="content"
                         show-overflow-tooltip
-                        header-align="center"
+                        align="center"
                         label="内容"
                         width="240"></el-table-column>
       <el-table-column  prop="link"
                         show-overflow-tooltip
-                        header-align="center"
+                        align="center"
                         label="视频"
                         width="120">
         <template slot-scope="scoped">
@@ -48,28 +48,28 @@
       </el-table-column>
       <el-table-column  prop="viewCount"
                         show-overflow-tooltip
-                        header-align="center"
+                        align="center"
                         label="浏览次数"
                         width="100"></el-table-column>
       <el-table-column  prop="username"
                         show-overflow-tooltip
-                        header-align="center"
+                        align="center"
                         label="发布者(用户)"
                         width="130"></el-table-column>
       <el-table-column  prop="date"
                         show-overflow-tooltip
-                        header-align="center"
+                        align="center"
                         label="发布时间"
                         :formatter='formatter'
                         width="160"></el-table-column>
       <el-table-column  prop="checkStatus"
                         show-overflow-tooltip
                         :formatter='checkStatusFormatter'
-                        header-align="center"
+                        align="center"
                         label="审核状态"
                         width="80"></el-table-column>
       <el-table-column  label="操作"
-                        header-align="center"
+                        align="center"
                         width="250">
         <template slot-scope="scope">
           <el-button  size="mini"

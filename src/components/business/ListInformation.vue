@@ -24,39 +24,39 @@
               highlight-current-row
               style="width: 100%">
       <el-table-column  type="index"
-                        header-align="center"
+                        align="center"
                         show-overflow-tooltip
                         label="索引"
                         width="50"
                         :index="1"></el-table-column>
       <el-table-column  show-overflow-tooltip
-                        header-align="center"
+                        align="center"
                         prop="title"
                         label="标题"
                         width="220"></el-table-column>
       <el-table-column  show-overflow-tooltip
-                        header-align="center"
+                        align="center"
                         prop="content"
                         label="内容"
                         width="340"></el-table-column>
       <el-table-column  prop="viewCount"
-                        header-align="center"
+                        align="center"
                         show-overflow-tooltip
                         label="浏览次数"
                         width="100"></el-table-column>
       <el-table-column  show-overflow-tooltip
-                        header-align="center"
+                        align="center"
                         prop="username"
                         label="发布者(管理员)"
                         width="170"></el-table-column>
       <el-table-column  show-overflow-tooltip
-                        header-align="center"
+                        align="center"
                         :formatter='formatter'
                         prop="date"
                         label="发布时间"
                         width="170"></el-table-column>
       <el-table-column  label="操作"
-                        header-align="center"
+                        align="center"
                         show-overflow-tooltip
                         width="220">
         <template slot-scope="scope">
