@@ -7,5 +7,5 @@
 
 # linux_learn_platform_background
 
-> linux 管理学习平台 后台部分
+> linux 管理学习平台 --前端后台页面部分
 
