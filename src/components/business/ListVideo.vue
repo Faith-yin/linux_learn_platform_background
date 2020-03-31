@@ -206,12 +206,10 @@ export default {
       // 表单校验
       let mark = this.formRequired({arr: {checkStatus}, msg: '请输入必填项'})
       if(!mark)return;
-      // 状态格式化为数字标识
-      let checkStatusToNum = this.checkStatsToNum(checkStatus)
       // 请求参数
       let model = {
         id: this.rowInfo.id,
-        checkStatus: checkStatusToNum,
+        checkStatus: Number(checkStatus),
       }
       this.$emit('onSubmit',this.btnMark,model)
       this.showDialogMark = false
