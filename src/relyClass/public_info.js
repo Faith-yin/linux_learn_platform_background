@@ -191,6 +191,10 @@ export default {
     showArticle(model) {
       return publicApi.showArticle(model)
     },
+    // 查询全部：按阅读量降序排列
+    showArticleOrderByView() {
+      return publicApi.showArticleOrderByView()
+    },
     // 添加
     addArticle(model) {
       return publicApi.addArticle(model)
@@ -214,6 +218,10 @@ export default {
     showVideo(model) {
       return publicApi.showVideo(model)
     },
+    // 查询全部：按阅读量降序排列
+    showVideoOrderByView() {
+      return publicApi.showVideoOrderByView()
+    },
     // 修改
     updateVideo(model) {
       return publicApi.updateVideo(model)
@@ -236,6 +244,10 @@ export default {
     // 查询全部
     showAllIssues(model) {
       return publicApi.showAllIssues(model)
+    },
+    // 查询全部：按阅读量降序排列
+    showIssuesOrderByView() {
+      return publicApi.showIssuesOrderByView()
     },
     // 修改
     updateIssues(model) {
@@ -366,6 +378,32 @@ export default {
         }
       }
       return publicApi.uploadImg(model, config)
-    }
+    },
+
+
+    /**
+     * @Author: 殷鹏飞
+     * @Date: 2020-04-03 11:47:11
+     * @Description: 网站访问量信息
+     */
+    // 查询全部：按日期降序排列
+    showAllWebNum() {
+      return publicApi.showAllWebNum()
+    },
+    // 更新数据viewCount访问量字段 +1
+    updateWebNumById() {
+      let model = moment().format('YYYY-MM-DD')
+      return publicApi.updateWebNumById(model)
+    },
+
+
+      /**
+     * @Author: 殷鹏飞
+     * @Date: 2020-04-03 18:48:13
+     * @Description: 各个表总数
+     */
+    findTotal() {
+      return publicApi.findTotal()
+    },
   }
 }

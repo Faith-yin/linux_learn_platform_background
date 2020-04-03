@@ -12,9 +12,11 @@ import ElementUi from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import vueInit from '@/vue_init.js'
 import './style/index.scss'
+import echarts from 'echarts'
 import Vuex from 'vuex'
 
 Vue.config.productionTip = false
+Vue.prototype.$echarts = echarts
 
 Vue.use(ElementUi)
 Vue.use(vueInit)

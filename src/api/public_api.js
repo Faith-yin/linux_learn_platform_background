@@ -39,6 +39,10 @@ const publicApi = {
   showArticle(model) {
     return axios.post(`/article/showArticle`,model)
   },
+  // 查询全部：按阅读量降序排列
+  showArticleOrderByView() {
+    return axios.get(`/article/showArticleOrderByView`)
+  },
   // 添加
   addArticle(model) {
     return axios.post(`/article/addArticle`,model)
@@ -62,6 +66,10 @@ const publicApi = {
   showVideo(model) {
     return axios.post(`/video/showVideo`,model)
   },
+  // 查询全部：按阅读量降序排列
+  showVideoOrderByView() {
+    return axios.get(`/video/showVideoOrderByView`)
+  },
   // 修改
   updateVideo(model) {
     return axios.put(`/video/updateVideo`,model)
@@ -84,6 +92,10 @@ const publicApi = {
   // 查询全部
   showAllIssues(model) {
     return axios.post(`/issues/showAllIssues`,model)
+  },
+  // 查询全部：按阅读量降序排列
+  showIssuesOrderByView() {
+    return axios.get(`/issues/showIssuesOrderByView`)
   },
   // 修改
   updateIssues(model) {
@@ -204,6 +216,31 @@ const publicApi = {
   // 图片上传 
   uploadImg(model, config) {
     return axios.post(`/uploadFile/uploadImg`, model, config)
+  },
+
+
+  /**
+   * @Author: 殷鹏飞
+   * @Date: 2020-04-03 11:47:11
+   * @Description: 网站访问量信息
+   */
+  // 查询全部：按日期降序排列
+  showAllWebNum() {
+    return axios.get(`/webVisitorNum/showAllWebNum`)
+  },
+  // 更新数据viewCount访问量字段 +1
+  updateWebNumById(model) {
+    return axios.post(`/webVisitorNum/updateWebNumById`,model)
+  },
+
+
+  /**
+   * @Author: 殷鹏飞
+   * @Date: 2020-04-03 18:48:13
+   * @Description: 各个表总数
+   */
+  findTotal() {
+    return axios.get(`/findTableTotal/findTotal`)
   },
 
 

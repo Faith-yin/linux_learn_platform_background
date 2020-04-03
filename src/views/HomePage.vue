@@ -21,7 +21,7 @@
           <navbar @selectTabClick='selectTabClick'></navbar>
         </el-aside>
         <!-- 右侧部分 -->
-        <el-container>
+        <el-container :style="selectedTab==8 ? 'min-height: 91.5vh':''">
           <!-- 右侧：上方 主要信息展示区 -->
           <el-main>
             <list-information v-if="selectedTab==1"
@@ -67,11 +67,7 @@
                         @searchClick='fetchListData'
                         @onSubmit='onSubmit'></list-user>
             <list-statistics  v-if="selectedTab==8"
-                              :dataList="selectedTab==8&&dataList"
-                              :currentPage="selectedTab==8&&currentPage"
-                              :pageSize="selectedTab==8&&pageSize"
-                              @searchClick='fetchListData'
-                              @onSubmit='onSubmit'></list-statistics>
+                              :dataList="selectedTab==8&&dataList"></list-statistics>
             <list-admin v-if="selectedTab==9"
                         :dataList="selectedTab==9&&dataList"
                         :currentPage="selectedTab==9&&currentPage"
@@ -80,7 +76,7 @@
                         @onSubmit='onSubmit'></list-admin>
           </el-main>
           <!-- 右侧：下方 分页 -->
-          <el-footer>
+          <el-footer v-if="selectedTab!=8">
             <el-pagination  @size-change="handleSizeChange"
                             @current-change="handleCurrentChange"
                             :current-page.sync="currentPage"
@@ -193,6 +189,7 @@ export default {
     fetchListData(searchValue) {
       let {id} = this.adminInfo
       let {portMethod} = this.tabToRouterArr.find(el => el.selectedTab == this.selectedTab)
+      if(!portMethod) return;
       // 请求模板参数
       let methodModel = {
         pMethod: this[portMethod]({value: searchValue, id}),

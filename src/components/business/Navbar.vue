@@ -41,7 +41,7 @@
       </el-menu-item>
       <el-menu-item index=8>
         <i class="el-icon-pie-chart"></i>
-        <span slot="title">学习资源使用统计</span>
+        <span slot="title">学习资源统计</span>
       </el-menu-item>
       <el-menu-item index=9>
         <i class="el-icon-info"></i>
