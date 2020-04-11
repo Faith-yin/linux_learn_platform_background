@@ -25,44 +25,32 @@
               style="width: 100%">
       <el-table-column  type="index"
                         align="center"
-                        label="索引"
+                        label="序号"
                         width="50"
                         :index="1"></el-table-column>
       <el-table-column  prop="photo"
                         show-overflow-tooltip
-                        align="center"
-                        label="头像"
-                        width="90">
+                        label="头像">
         <template slot-scope="scope">
           <el-avatar size="medium" icon='el-icon-user' :src="scope.row.photo"></el-avatar>
         </template>
       </el-table-column>
       <el-table-column  prop="username"
                         show-overflow-tooltip
-                        align="center"
-                        label="名称"
-                        width="120"></el-table-column>
+                        label="名称"></el-table-column>
       <el-table-column  prop="password"
                         show-overflow-tooltip
                         :formatter="encriptStr"
-                        align="center"
-                        label="密码"
-                        width="120"></el-table-column>
+                        label="密码"></el-table-column>
       <el-table-column  prop="sex"
                         show-overflow-tooltip
-                        align="center"
-                        label="性别"
-                        width="100"></el-table-column>
+                        label="性别"></el-table-column>
       <el-table-column  prop="birthday"
                         show-overflow-tooltip
-                        align="center"
-                        label="生日"
-                        width="170"></el-table-column>
+                        label="生日"></el-table-column>
       <el-table-column  prop="description"
                         show-overflow-tooltip
-                        align="center"
-                        label="签名"
-                        width="380"></el-table-column>
+                        label="签名"></el-table-column>
       <el-table-column  label="操作"
                         align="center"
                         width="250">
@@ -83,7 +71,8 @@
                 :visible.sync="showDialogMark"
                 @close='beforeClose' 
                 :close-on-click-modal='false'
-                top="5vh">
+                top="5vh"
+                center>
       <el-form  :model="form" 
                 label-position="right" 
                 label-width="80px">
@@ -139,7 +128,7 @@
                     :disabled="btnMark==2"
                     placeholder='输入几句话介绍一下自己吧...' 
                     type="textarea" 
-                    rows=4
+                    rows=6
                     show-word-limit
                     maxlength=240></el-input>
         </el-form-item>

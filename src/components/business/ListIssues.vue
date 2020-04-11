@@ -24,30 +24,22 @@
               style="width: 100%">
       <el-table-column  type="index"
                         align="center"
-                        label="索引"
+                        label="序号"
                         width="50"
                         :index="1"></el-table-column>
       <el-table-column  prop="title"
                         show-overflow-tooltip
-                        align="center"
-                        label="标题"
-                        width="400"></el-table-column>
+                        label="标题"></el-table-column>
       <el-table-column  prop="viewCount"
                         show-overflow-tooltip
-                        align="center"
-                        label="浏览次数"
-                        width="203"></el-table-column>
+                        label="浏览次数"></el-table-column>
       <el-table-column  prop="username"
                         show-overflow-tooltip
-                        align="center"
-                        label="发布者(用户)"
-                        width="203"></el-table-column>
+                        label="发布者(用户)"></el-table-column>
       <el-table-column  prop="date"
                         show-overflow-tooltip
-                        align="center"
                         :formatter='formatter'
-                        label="发布时间"
-                        width="203"></el-table-column>
+                        label="发布时间"></el-table-column>
       <el-table-column  label="操作"
                         align="center"
                         width="220">
@@ -65,7 +57,7 @@
       </el-table-column>
     </el-table>
     <!-- 弹出框 -->
-    <el-dialog title="Issues信息" :visible.sync="showDialogMark" @close='beforeClose' :close-on-click-modal='false'>
+    <el-dialog title="Issues信息" :visible.sync="showDialogMark" @close='beforeClose' :close-on-click-modal='false' center>
       <el-form :model="form" label-position="right" label-width="80px">
         <el-form-item label="发布者">
           <el-input v-model="form.username" 
@@ -75,7 +67,7 @@
         <el-form-item label="标题" required>
           <el-input v-model="form.title" 
                     :disabled="btnMark==2"
-                    rows=3
+                    rows=5
                     type="textarea" 
                     autocomplete="off"></el-input>
         </el-form-item>

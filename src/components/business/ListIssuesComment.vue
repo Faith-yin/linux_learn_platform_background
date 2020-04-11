@@ -23,31 +23,22 @@
               highlight-current-row
               style="width: 100%">
       <el-table-column  type="index"
-                        align="center"
-                        label="索引"
+                        label="序号"
                         width="50"
                         :index="1"></el-table-column>
       <el-table-column  prop="title"
                         label="Issue标题"
-                        align="center"
-                        show-overflow-tooltip
-                        width="220"></el-table-column>
+                        show-overflow-tooltip></el-table-column>
       <el-table-column  prop="content"
                         label="评论内容"
-                        align="center"
-                        show-overflow-tooltip
-                        width="450"></el-table-column>
+                        show-overflow-tooltip></el-table-column>
       <el-table-column  prop="username"
                         label="评论者(用户)"
-                        align="center"
-                        show-overflow-tooltip
-                        width="170"></el-table-column>
+                        show-overflow-tooltip></el-table-column>
       <el-table-column  prop="date"
                         label="评论时间"
-                        align="center"
                         :formatter='formatter'
-                        show-overflow-tooltip
-                        width="170"></el-table-column>
+                        show-overflow-tooltip></el-table-column>
       <el-table-column  label="操作"
                         align="center"
                         width="220">
@@ -65,7 +56,7 @@
       </el-table-column>
     </el-table>
     <!-- 弹出框 -->
-    <el-dialog title="Issues评论信息" :visible.sync="showDialogMark" @close='beforeClose' :close-on-click-modal='false'>
+    <el-dialog title="Issues评论信息" :visible.sync="showDialogMark" @close='beforeClose' :close-on-click-modal='false' center>
       <el-form :model="form" label-position="right" label-width="90px">
         <el-form-item label="发布者">
           <el-input v-model="form.username" 
@@ -80,7 +71,7 @@
         <el-form-item label="评论内容" required>
           <el-input v-model="form.content" 
                     :disabled="btnMark==2"
-                    rows=4
+                    rows=6
                     show-word-limit
                     maxlength=240
                     type="textarea" 
@@ -240,6 +231,7 @@ export default {
 
 <style lang="scss">
 #list-wrapper {
+  min-height: 100%;
   // 标题部分
   .title-wrapper {
     font-size: 20px;

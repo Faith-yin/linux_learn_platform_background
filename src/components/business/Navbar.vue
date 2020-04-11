@@ -73,7 +73,8 @@ export default {
 
 <style lang="scss">
 #navbar {
-  height: 100%;
+  min-height: -webkit-calc(100vh - 60px);
+  background-color: #545C64;
   .el-menu-vertical-demo {
     height: 100%;
     li {

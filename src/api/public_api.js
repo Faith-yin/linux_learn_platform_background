@@ -242,6 +242,9 @@ const publicApi = {
   findTotal() {
     return axios.get(`/findTableTotal/findTotal`)
   },
+  showPublish() {
+    return axios.get(`/findTableTotal/showPublish`)
+  },
 
 
 }

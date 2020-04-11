@@ -24,28 +24,21 @@
               highlight-current-row
               style="width: 100%">
       <el-table-column  type="index"
-                        align="center"
                         show-overflow-tooltip
-                        label="索引"
+                        label="序号"
                         width="90"
                         :index="1"></el-table-column>
       <el-table-column  prop="username"
-                        align="center"
                         show-overflow-tooltip
-                        label="名称"
-                        width="320"></el-table-column>
+                        label="名称"></el-table-column>
       <el-table-column  prop="password"
-                        align="center"
                         show-overflow-tooltip
                         :formatter="encriptStr"
-                        label="密码"
-                        width="320"></el-table-column>
+                        label="密码"></el-table-column>
       <el-table-column  prop="lastLoginTime"
-                        align="center"
                         show-overflow-tooltip
                         :formatter='formatter'
-                        label="最后登录时间"
-                        width="320"></el-table-column>
+                        label="最后登录时间"></el-table-column>
       <el-table-column  label="操作"
                         align="center"
                         show-overflow-tooltip
@@ -64,7 +57,7 @@
       </el-table-column>
     </el-table>
     <!-- 弹出框 -->
-    <el-dialog title="管理员信息" :visible.sync="showDialogMark" @close='beforeClose' :close-on-click-modal='false'>
+    <el-dialog title="管理员信息" :visible.sync="showDialogMark" @close='beforeClose' :close-on-click-modal='false' center>
       <el-form :model="form" label-position="right" label-width="100px">
         <el-form-item label="管理员名称" required>
           <el-input v-model="form.username" 

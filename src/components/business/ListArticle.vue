@@ -23,41 +23,30 @@
               highlight-current-row
               style="width: 100%">
       <el-table-column  type="index"
-                        align="center"
-                        label="索引"
+                        label="序号"
                         width="50"
                         :index="1"></el-table-column>
       <el-table-column  prop="title"
-                        align="center"
                         show-overflow-tooltip
-                        label="标题"
-                        width="220"></el-table-column>
+                        label="标题"></el-table-column>
       <el-table-column  prop="content"
                         show-overflow-tooltip
-                        align="center"
                         label="内容"
-                        width="280"></el-table-column>
+              ></el-table-column>
       <el-table-column  prop="viewCount"
                         show-overflow-tooltip
-                        align="center"
-                        label="浏览次数"
-                        width="100"></el-table-column>
+                        label="浏览次数"></el-table-column>
       <el-table-column  prop="username"
-                        label="发布者(用户)"
-                        align="center"
-                        width="140"></el-table-column>
+                        label="发布者(用户)"></el-table-column>
       <el-table-column  prop="date"
                         show-overflow-tooltip
                         :formatter='formatter'
-                        align="center"
-                        label="发布时间"
-                        width="160"></el-table-column>
+                        label="发布时间"></el-table-column>
       <el-table-column  prop="checkStatus"
                         show-overflow-tooltip
-                        align="center"
                         :formatter='checkStatusFormatter'
                         label="审核状态"
-                        width="80"></el-table-column>
+                  ></el-table-column>
       <el-table-column  label="操作"
                         align="center"
                         width="250">
@@ -74,7 +63,7 @@
       </el-table-column>
     </el-table>
     <!-- 弹出框 -->
-    <el-dialog title="文章信息" :visible.sync="showDialogMark" @close='beforeClose' :close-on-click-modal='false'>
+    <el-dialog title="文章信息" :visible.sync="showDialogMark" @close='beforeClose' :close-on-click-modal='false' center>
       <el-form :model="form" label-position="right" label-width="80px">
         <el-form-item label="发布者">
           <el-input v-model="form.username" 
@@ -89,7 +78,7 @@
         <el-form-item label="内容" required>
           <el-input v-model="form.content" 
                     :disabled="btnMark==2 || btnMark==3"
-                    rows=7
+                    rows=10
                     type="textarea" 
                     autocomplete="off"></el-input>
         </el-form-item>

@@ -24,40 +24,29 @@
               highlight-current-row
               style="width: 100%">
       <el-table-column  type="index"
-                        align="center"
                         show-overflow-tooltip
-                        label="索引"
+                        label="序号"
                         width="50"
                         :index="1"></el-table-column>
       <el-table-column  show-overflow-tooltip
-                        align="center"
                         prop="title"
-                        label="标题"
-                        width="220"></el-table-column>
+                        label="标题"></el-table-column>
       <el-table-column  show-overflow-tooltip
-                        align="center"
                         prop="content"
-                        label="内容"
-                        width="340"></el-table-column>
+                        label="内容"></el-table-column>
       <el-table-column  prop="viewCount"
-                        align="center"
                         show-overflow-tooltip
-                        label="浏览次数"
-                        width="100"></el-table-column>
+                        label="浏览次数"></el-table-column>
       <el-table-column  show-overflow-tooltip
-                        align="center"
                         prop="username"
-                        label="发布者(管理员)"
-                        width="170"></el-table-column>
+                        label="发布者(管理员)"></el-table-column>
       <el-table-column  show-overflow-tooltip
-                        align="center"
                         :formatter='formatter'
                         prop="date"
-                        label="发布时间"
-                        width="170"></el-table-column>
+                        label="发布时间"></el-table-column>
       <el-table-column  label="操作"
-                        align="center"
                         show-overflow-tooltip
+                        align="center"
                         width="220">
         <template slot-scope="scope">
           <el-button  size="mini"
@@ -72,7 +61,11 @@
       </el-table-column>
     </el-table>
     <!-- 弹出框 -->
-    <el-dialog title="公告信息" :visible.sync="showDialogMark" @close='beforeClose' :close-on-click-modal='false'>
+    <el-dialog title="公告信息" 
+              :visible.sync="showDialogMark" 
+              @close='beforeClose' 
+              :close-on-click-modal='false' 
+              center>
       <el-form :model="form" label-position="right" label-width="80px">
         <el-form-item label="发布者">
           <el-input v-model="form.username" 
@@ -87,7 +80,7 @@
         <el-form-item label="内容" required>
           <el-input v-model="form.content" 
                     :disabled="btnMark==2"
-                    rows=4
+                    rows=10
                     show-word-limit
                     maxlength=120
                     type="textarea" 

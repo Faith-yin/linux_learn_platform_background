@@ -64,7 +64,11 @@ export default {
       videoList: [],    // video按日期降序排列
       issuesList: [], // issues文章按日期降序排列
       selectValue2: 1, // 当前折线图的选项
+      publicNumber: [], // 7日访问量数组
       selectShowList2: [],  // 当前折线图要展示的数据列表
+      publishArticleNumber: [], //近七日访问量 article
+      publishVideoNumber: [], //近七日访问量 video
+      publishIssuesNumber: [], //近七日访问量 issues
     }
   },
   methods: {
@@ -218,7 +222,10 @@ export default {
      * @Description: radio2 发生变化时
      */
     changeRadio2() {
-
+      this.selectValue2 == 1 && (this.selectShowList2 = this.publicNumber.article)
+      this.selectValue2 == 2 && (this.selectShowList2 = this.publicNumber.video)
+      this.selectValue2 == 3 && (this.selectShowList2 = this.publicNumber.issues)
+      this.createPolylineChart2()
     },
     /**
      * @Author: 殷鹏飞
@@ -244,16 +251,32 @@ export default {
         },
         //x轴
         xAxis: {
-          data: ["苹果", "橘子", "橙子", "香蕉", "菠萝", "榴莲", "柚子"]
+          data: [
+            moment(this.selectShowList2[6].date).format('MM/DD'),
+            moment(this.selectShowList2[5].date).format('MM/DD'),
+            moment(this.selectShowList2[4].date).format('MM/DD'),
+            moment(this.selectShowList2[3].date).format('MM/DD'),
+            moment(this.selectShowList2[2].date).format('MM/DD'),
+            moment(this.selectShowList2[1].date).format('MM/DD'),
+            moment(this.selectShowList2[0].date).format('MM/DD'),
+          ],
         },
         //y轴没有显式设置，根据值自动生成y轴
         yAxis: {},
         //数据-data是最终要显示的数据
         series: [
           {
-            // name: "销量",
+            name: "发布量",
             type: "line",
-            data: [40, 20, 35, 60, 55, 10, 88]
+            data: [
+              this.selectShowList2[6].publishCount, 
+              this.selectShowList2[5].publishCount, 
+              this.selectShowList2[4].publishCount, 
+              this.selectShowList2[3].publishCount, 
+              this.selectShowList2[2].publishCount,
+              this.selectShowList2[1].publishCount,
+              this.selectShowList2[0].publishCount,
+            ],
           }
         ],
         tooltip: {
@@ -277,7 +300,7 @@ export default {
     /**
      * @Author: 殷鹏飞
      * @Date: 2020-04-03 12:52:40
-     * @Description: 获取各个表总量, 网站访问量信息, 获取文章，video，issues列表信息
+     * @Description: 获取各个表总量, 网站访问量信息, 获取文章，video，issues列表信息 近七日访问量
      */
     async fetchTotal() {
       let {data} = await this.findTotal()
@@ -299,6 +322,11 @@ export default {
       let {data} = await this.showIssuesOrderByView()
       this.issuesList = data
     },
+    async fetchPublishList() {
+      let {data} = await this.showPublish()
+      this.publicNumber = data
+      
+    },
 
     /**
      * @Author: 殷鹏飞
@@ -311,6 +339,7 @@ export default {
       await this.fetchArticleList()
       await this.fetchVideoList()
       await this.fetchIssuesList()
+      await this.fetchPublishList()
     },
   },
   async mounted() {
@@ -325,11 +354,12 @@ export default {
     await this.fetchList()
     // 初始化显示的数据
     this.selectShowList = this.articelList
+    this.selectShowList2 = this.publicNumber.article
     // 网站访问量 折线图 初始化
     this.createPolylineChart()
-    // article 柱状图 初始化
+    // 阅读量 柱状图 初始化
     this.createArticleHistogramChart()
-    // 发布量 折线图
+    // 发布量 折线图 初始化
     this.createPolylineChart2()
 
     // 关闭loading,并打开加载完成开关

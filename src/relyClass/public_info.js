@@ -405,5 +405,8 @@ export default {
     findTotal() {
       return publicApi.findTotal()
     },
+    showPublish() {
+      return publicApi.showPublish()
+    },
   }
 }

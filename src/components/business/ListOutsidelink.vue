@@ -24,40 +24,29 @@
               highlight-current-row
               style="width: 100%">
       <el-table-column  type="index"
-                        label="索引"
-                        align="center"
+                        label="序号"
                         show-overflow-tooltip
                         width="50"
                         :index="1"></el-table-column>
       <el-table-column  prop="title"
                         show-overflow-tooltip
-                        align="center"
-                        label="标题"
-                        width="190"></el-table-column>
+                        label="标题"></el-table-column>
       <el-table-column  prop="content"
                         show-overflow-tooltip
-                        align="center"
-                        label="内容"
-                        width="350"></el-table-column>
+                        label="内容"></el-table-column>
       <el-table-column  prop="link"
                         show-overflow-tooltip
-                        align="center"
-                        label="链接"
-                        width="240">
+                        label="链接">
         <template slot-scope="scoped">
           <el-link target="_blank" type="success" :href="scoped.row.link">打开链接</el-link>
         </template>
       </el-table-column>
       <el-table-column  prop="viewCount"
                         show-overflow-tooltip
-                        align="center"
-                        label="浏览次数"
-                        width="120"></el-table-column>
+                        label="浏览次数"></el-table-column>
       <el-table-column  prop="username"
                         show-overflow-tooltip
-                        align="center"
-                        label="发布者(管理员)"
-                        width="120"></el-table-column>
+                        label="发布者(管理员)"></el-table-column>
       <el-table-column  label="操作"
                         align="center"
                         width="220">
@@ -74,7 +63,7 @@
       </el-table-column>
     </el-table>
     <!-- 弹出框 -->
-    <el-dialog title="站外学习链接信息" :visible.sync="showDialogMark" @close='beforeClose' :close-on-click-modal='false'>
+    <el-dialog title="站外学习链接信息" :visible.sync="showDialogMark" @close='beforeClose' :close-on-click-modal='false' center>
       <el-form :model="form" label-position="right" label-width="80px">
         <el-form-item label="发布者">
           <el-input v-model="form.username" 
@@ -89,7 +78,7 @@
         <el-form-item label="内容" required>
           <el-input v-model="form.content" 
                     :disabled="btnMark==2"
-                    rows=4
+                    rows=6
                     show-word-limit
                     maxlength=120
                     type="textarea" 
