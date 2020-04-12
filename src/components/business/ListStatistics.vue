@@ -277,6 +277,9 @@ export default {
               this.selectShowList2[1].publishCount,
               this.selectShowList2[0].publishCount,
             ],
+            markLine: {
+              data: [{ type: "average", name: "平均值" }]
+            },
           }
         ],
         tooltip: {
