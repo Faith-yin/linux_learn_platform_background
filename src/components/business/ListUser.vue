@@ -71,14 +71,13 @@
                 :visible.sync="showDialogMark"
                 @close='beforeClose' 
                 :close-on-click-modal='false'
-                top="5vh"
                 center>
       <el-form  :model="form" 
                 label-position="right" 
                 label-width="80px">
         <!-- 头像上传 -->
-        <el-form-item label="用户头像"> 
-          <el-upload  v-if="btnMark==1"
+        <el-form-item label="用户头像" v-if="btnMark==2"> 
+          <!-- <el-upload  v-if="btnMark==1"
                       class="upload-demo"
                       ref="uploadRef"
                       action=""
@@ -89,8 +88,8 @@
                       :http-request="addFile">
                       <el-button size="small" type="primary" :disabled="btnMark==2">点击上传</el-button>
                       <div slot="tip" class="el-upload__tip">只能上传jpg/png文件</div>
-          </el-upload>
-          <el-avatar v-if="btnMark==2" size="medium" icon='el-icon-user' :src="form.photo"></el-avatar>
+          </el-upload> -->
+          <el-avatar size="medium" icon='el-icon-user' :src="form.photo"></el-avatar>
         </el-form-item>
         <!-- 用户信息 -->
         <el-form-item label="用户名称" required>
@@ -109,21 +108,21 @@
                     show-word-limit
                     maxlength=12></el-input>
         </el-form-item>
-        <el-form-item label="性别">
+        <el-form-item label="性别" v-if="btnMark==2">
           <el-radio-group v-model="form.sex" :disabled="btnMark==2">
             <el-radio label="男">男</el-radio>
             <el-radio label="女">女</el-radio>
             <el-radio label="保密">保密</el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="生日">
+        <el-form-item label="生日" v-if="btnMark==2">
           <el-date-picker v-model="form.birthday"
                           :disabled="btnMark==2"
                           type="date"
                           value-format="yyyy-MM-dd"
                           placeholder="选择日期"></el-date-picker>
         </el-form-item>
-        <el-form-item label="我的签名">
+        <el-form-item label="我的签名" v-if="btnMark==2">
           <el-input v-model="form.description" 
                     :disabled="btnMark==2"
                     placeholder='输入几句话介绍一下自己吧...' 
