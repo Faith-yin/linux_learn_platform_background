@@ -409,7 +409,7 @@ export default {
   }
 
   .container {
-    padding-top: 10px;
+    padding-top: 60px;
     box-sizing: border-box;
     display: flex;
     justify-content: space-around;
