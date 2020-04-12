@@ -14,9 +14,9 @@
           opacity: 0.8;
           background-color: #fff;
           border: 1px solid #DCDFE6;
-          border-radius: 5px;
-          -webkit-border-radius: 5px;
-          -moz-border-radius: 5px;
+          border-radius: 20px;
+        //   -webkit-border-radius: 5px;
+        //   -moz-border-radius: 5px;
           box-shadow: 0 0 20px #9ca1aa;
       }
       // 标题区域
@@ -31,6 +31,9 @@
           // 登录注册提示信息
           .login-info {
               padding-bottom: 20px;
+              span {
+                  color: #ff6700;
+              }
           }
       }
       // 按钮盒子

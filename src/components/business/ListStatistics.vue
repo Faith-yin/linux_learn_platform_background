@@ -413,9 +413,9 @@ export default {
     box-sizing: border-box;
     display: flex;
     justify-content: space-around;
-    #box {
+    // #box {
 
-    }
+    // }
   }
 }
 </style>

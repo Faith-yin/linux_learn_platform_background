@@ -81,7 +81,7 @@
                             @current-change="handleCurrentChange"
                             :current-page.sync="currentPage"
                             background
-                            :page-sizes="[10, 20, 30, 40, 50]"
+                            :page-sizes="pageSizes"
                             :page-size="pageSize"
                             layout="sizes, prev, pager, next, total"
                             :total="dataList.length || 0"></el-pagination>
@@ -107,7 +107,9 @@ export default {
       // 当前页码
       currentPage: 1,
       // 初始每页条数
-      pageSize: 10,
+      pageSize: 20,
+      // 页码列表
+      pageSizes: [20, 40, 60, 80],
       // 数据列表
       dataList: [],
     }
