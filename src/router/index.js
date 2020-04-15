@@ -20,6 +20,11 @@ export default new Router({
       path: '/HomePage', //主页面
       name: 'HomePage',
       component: () => import('@/views/HomePage')
-    }
+    },
+    {
+      path: '*', //404
+      name: '404',
+      component: () => import('@/views/404')
+    },
   ]
 })

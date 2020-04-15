@@ -66,7 +66,7 @@ export default class InitAxios {
      * @Description: 响应失败回调
      */
     errorResponseFun() {
-      Message({showClose: true, message: '响应连接失败', type: 'error'})
+      Message({showClose: true, message: '请求连接失败', type: 'error'})
       return Promise.reject()
     }
     /*
