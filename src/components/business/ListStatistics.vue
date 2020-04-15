@@ -247,10 +247,11 @@ export default {
         },
         //图例-每一条数据的名字叫销量
         legend: {
-          data: ["销量"]
+          data: ["发布量"]
         },
         //x轴
         xAxis: {
+          name: '日期',
           data: [
             moment(this.selectShowList2[6].date).format('MM/DD'),
             moment(this.selectShowList2[5].date).format('MM/DD'),
