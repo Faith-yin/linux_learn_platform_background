@@ -110,6 +110,7 @@ export default {
      * @Description: 时间格式化
      */   
     formatter(row, column, cellValue, index) {
+      if(!cellValue) return '暂无';
       return moment(cellValue).format('YYYY-MM-DD HH:mm:ss')
     }, 
 

@@ -66,9 +66,6 @@ export default {
       selectValue2: 1, // 当前折线图的选项
       publicNumber: [], // 7日访问量数组
       selectShowList2: [],  // 当前折线图要展示的数据列表
-      publishArticleNumber: [], //近七日访问量 article
-      publishVideoNumber: [], //近七日访问量 video
-      publishIssuesNumber: [], //近七日访问量 issues
     }
   },
   methods: {

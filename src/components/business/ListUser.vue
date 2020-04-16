@@ -97,11 +97,11 @@
                     :disabled="btnMark==2"
                     show-word-limit
                     maxlength=12
-                    placeholder='请输入名称, 2~12字符(必填)' 
+                    placeholder='请输入名称, 4 ~ 12字符' 
                     clearable></el-input>
         </el-form-item>
         <el-form-item label="用户密码" required>
-          <el-input placeholder='请输入密码, 6~12字符(必填)'
+          <el-input placeholder='请输入密码, 6 ~ 12字符'
                     type="password"
                     :disabled="btnMark==2"
                     v-model="form.password"
@@ -217,7 +217,7 @@ export default {
       let mark = this.formRequired({arr: {username, password}})
       if(!mark) return;
       // 用户名称 与 密码长度校验
-      if(username.length<2 || password.length<6) {
+      if(username.length<4 || password.length<6) {
         return Message({showClose: true, message: '用户名或密码长度不正确', type: 'warning'})
       }
       this.checkFile()

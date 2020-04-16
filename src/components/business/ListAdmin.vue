@@ -64,11 +64,11 @@
                     :disabled="btnMark==2"
                     show-word-limit
                     maxlength=12
-                    placeholder='请输入名称, 2~12位(必填)' 
+                    placeholder='请输入名称, 4 ~ 12位' 
                     clearable></el-input>
         </el-form-item>
         <el-form-item label="管理员密码" required>
-          <el-input placeholder='请输入密码, 6~12位(必填)'
+          <el-input placeholder='请输入密码, 6 ~ 12位'
                     v-model="form.password"
                     :disabled="btnMark==2"
                     show-word-limit
@@ -164,7 +164,7 @@ export default {
       let mark = this.formRequired({arr: {username, password}, msg: '请输入必填项'})
       if(!mark)return;
       // 用户名称 与 密码长度校验
-      if(username.length<2 || password.length<6) {
+      if(username.length<4 || password.length<6) {
         return Message({showClose: true, message: '用户名或密码长度不正确', type: 'warning'})
       }
       this.$emit('onSubmit',this.btnMark,{username, password})
@@ -181,11 +181,11 @@ export default {
       let mark = this.formRequired({arr: {username, password}, msg: '请输入必填项'})
       if(!mark)return;
       // 用户名称 与 密码长度校验
-      if(username.length<2 || password.length<6) {
+      if(username.length<4 || password.length<6) {
         return Message({showClose: true, message: '用户名或密码长度不正确', type: 'warning'})
       }
       // 请求参数
-      let model = {password, id: this.rowInfo.id}
+      let model = {username, password, id: this.rowInfo.id}
       // 取出管理员id
       let adminId = JSON.parse(sessionStorage.getItem('adminInfo')).id
       // 判断：如果修改者是超级管理员(id==1000) && 并且修改的不是自己的信息，则不需要重新登录
