@@ -78,9 +78,7 @@
         <el-form-item label="内容" required>
           <el-input v-model="form.content" 
                     :disabled="btnMark==2"
-                    rows=6
-                    show-word-limit
-                    maxlength=120
+                    rows=10
                     type="textarea" 
                     autocomplete="off"></el-input>
         </el-form-item>

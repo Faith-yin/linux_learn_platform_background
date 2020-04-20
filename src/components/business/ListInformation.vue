@@ -81,8 +81,6 @@
           <el-input v-model="form.content" 
                     :disabled="btnMark==2"
                     rows=10
-                    show-word-limit
-                    maxlength=120
                     type="textarea" 
                     autocomplete="off"></el-input>
         </el-form-item>
