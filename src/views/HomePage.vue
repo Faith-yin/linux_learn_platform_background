@@ -9,7 +9,7 @@
       <!-- 头部 -->
       <el-header>
         <el-row type="flex">
-          <el-col :span="16"><div class="one grid-content bg-purple">Linux 学习平台后台管理系统</div></el-col>
+          <el-col :span="16"><div class="one grid-content bg-purple">Linux管理学习平台后台管理系统</div></el-col>
           <el-col :span="4"><div class="two grid-content bg-purple-light">当前登陆者：{{adminInfo.username || '未知管理员'}}</div></el-col>
           <el-col :span="3"><div class="three grid-content bg-purple" @click="logout">退出登录</div></el-col>
         </el-row>

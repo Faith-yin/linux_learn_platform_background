@@ -13,7 +13,7 @@
                     class="login-box">
             <!-- 标题 -->
             <div class="login-title-box">
-                <h3 class="login-title">Linux学习平台 后台管理系统</h3>
+                <h3 class="login-title">Linux管理学习平台 后台管理系统</h3>
                 <div class="login-info color--gray">请<span class="color--ff6700"> 管理员 </span>登录：</div>
             </div>
             <!-- 账号 -->
